@@ -24,7 +24,6 @@ export default function CreateProfile() {
     const auth = getAuth();
     updateProfile(auth.currentUser, { displayName: username, photoURL: imgUrl })
       .then(() => {
-        console.log("Profile updated successfully!");
         setImgUrl('')
         setUsername('')
         setError('');

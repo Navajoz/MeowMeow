@@ -19,8 +19,6 @@ export default function SignUp() {
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         const user = userCredential.user;
-        console.log('User signed up:', user);
-
         const database = getDatabase();
         const userUid = user.uid;
         const room1Ref = ref(database, `ChatRooms/Room1/Members/${userUid}`);

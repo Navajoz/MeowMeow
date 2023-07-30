@@ -25,7 +25,6 @@ const ChatRoom = (props) => {
         }
       })
       .catch((error) => {
-        console.error('Error checking room existence:', error);
       });
 
     handleCancelPrivateChat();
