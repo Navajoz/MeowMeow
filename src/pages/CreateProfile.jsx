@@ -16,14 +16,19 @@ export default function CreateProfile() {
       return;
     }
 
+    if (!username || !imgUrl) {
+      setError("Please fill in both username and image URL fields.");
+      return;
+    }
+
     const auth = getAuth();
     updateProfile(auth.currentUser, { displayName: username, photoURL: imgUrl })
       .then(() => {
         console.log("Profile updated successfully!");
         setImgUrl('')
         setUsername('')
-        navigate('/app')
-
+        setError('');
+        navigate('/app');
       })
       .catch((error) => {
         setError("Error updating profile: " + error.message);
@@ -46,6 +51,7 @@ export default function CreateProfile() {
             onChange={(e) => setUsername(e.target.value)}
             className="w-full border border-gray-400 px-4 py-2 rounded-lg focus:outline-none focus:ring focus:ring-blue-300"
             placeholder="Enter your username"
+            required
           />
         </div>
         <div className="mb-4">
@@ -59,6 +65,7 @@ export default function CreateProfile() {
             onChange={(e) => setImgUrl(e.target.value)}
             className="w-full border border-gray-400 px-4 py-2 rounded-lg focus:outline-none focus:ring focus:ring-blue-300"
             placeholder="Enter your image URL"
+            required
           />
         </div>
         <button
